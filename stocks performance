@@ -1,0 +1,49 @@
+import numpy as np
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+import quandl
+
+from datetime import datetime
+import time
+
+import quandl
+
+import matplotlib
+%matplotlib inline
+
+jpm = quandl.get('wiki/jpm',start_date="2009-01-01", end_date = "2019-01-01")
+window = 20
+jpm['Mean'] = jpm['Close'].rolling(window).mean()
+jpm['Std'] = jpm['Close'].rolling(window).std()
+jpm['Up'] = jpm['Mean'] + 3*jpm['Std']
+jpm['Down'] = jpm['Mean'] - 3*jpm['Std']
+jpm.plot(y=['Mean', 'Up', 'Down'], subplots=False, title="JPM", figsize=(20,10));
+
+pnc = quandl.get('wiki/pnc',start_date="2009-01-01", end_date = "2019-01-01")
+window = 20
+pnc['Mean'] = pnc['Close'].rolling(window).mean()
+pnc['Std'] = pnc['Close'].rolling(window).std()
+pnc['Up'] = pnc['Mean'] + 3*pnc['Std']
+pnc['Down'] = pnc['Mean'] - 3*pnc['Std']
+pnc.plot(y=['Mean', 'Up', 'Down'], subplots=False, title="PNC", figsize=(20,10));
+
+wfc = quandl.get('wiki/wfc',start_date="2009-01-01", end_date = "2019-01-01")
+window = 20
+wfc['Mean'] = wfc['Close'].rolling(window).mean()
+wfc['Std'] = wfc['Close'].rolling(window).std()
+wfc['Up'] = wfc['Mean'] + 3*wfc['Std']
+wfc['Down'] = wfc['Mean'] - 3*wfc['Std']
+wfc.plot(y=['Mean', 'Up', 'Down'], subplots=False, title="WFC", figsize=(20,10));
+
+
+db = quandl.get('wiki/dod',start_date="2009-01-01", end_date = "2019-01-01")
+window = 20
+db['Mean'] = db['Close'].rolling(window).mean()
+db['Std'] = db['Close'].rolling(window).std()
+db['Up'] = db['Mean'] + 3*db['Std']
+db['Down'] = db['Mean'] - 3*db['Std']
+db.plot(y=['Mean', 'Up', 'Down'], subplots=False, title="DB", figsize=(20,10));
+
+
